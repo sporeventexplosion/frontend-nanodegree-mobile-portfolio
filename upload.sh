@@ -20,7 +20,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   cd gh-pages
 
   echo "INCOMING DIRECTORY LIST":
-  tree
+  ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
   cp -R $HOME/build/* .
   echo "Copied"
 
