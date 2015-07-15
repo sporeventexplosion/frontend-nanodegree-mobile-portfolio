@@ -13,14 +13,14 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   git config --global user.name "Travis CI"
 
   #using token clone gh-pages branch
-  #git clone --branch=gh-pages --depth 1 https://${GH_TOKEN}@github.com/sporeventexplosion/frontend-nanodegree-mobile-portfolio  gh-pages > /dev/null
-  git clone --branch=gh-pages --depth 1 https://${GH_TOKEN}@github.com  gh-pages > /dev/null
+  git clone --branch=gh-pages --depth 1 https://${GH_TOKEN}@github.com/sporeventexplosion/frontend-nanodegree-mobile-portfolio  gh-pages > /dev/null
+
 
   #go into diractory and copy data we're interested in to that directory
   cd gh-pages
 
   echo "INCOMING DIRECTORY LIST":
-  ls
+  tree
   cp -R $HOME/build/* .
   echo "Copied"
 
