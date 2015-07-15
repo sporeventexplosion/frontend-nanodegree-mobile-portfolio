@@ -10,8 +10,8 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   git config --global user.name "Travis CI"
 
   #using token clone gh-pages branch
-  #git clone --branch=gh-pages --depth 1 https://${GH_TOKEN}@github.com/sporeventexplosion/frontend-nanodegree-mobile-portfolio  gh-pages > /dev/null
-  git clone --branch=gh-pages --depth 1 https://www.github.com/sporeventexplosion/frontend-nanodegree-mobile-portfolio.git  gh-pages > /dev/null
+  git clone --branch=gh-pages --depth 1 https://${GH_TOKEN}@github.com/sporeventexplosion/frontend-nanodegree-mobile-portfolio  gh-pages > /dev/null
+
   #go into diractory and copy data we're interested in to that directory
   cd gh-pages
   cp -Rf $HOME/build/* .
