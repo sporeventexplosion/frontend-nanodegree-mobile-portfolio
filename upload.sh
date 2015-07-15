@@ -4,6 +4,9 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   #copy data we're interested in to other place
   cp -R . $HOME/build
 
+  echo "INCOMING DIRECTORY LIST":
+  ls
+
   #go to home and setup git
   cd $HOME
   git config --global user.email "travis@travis-ci.org"
