@@ -16,6 +16,9 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   cd gh-pages
   cp -R $HOME/build/* .
 
+  echo "INCOMING DIRECTORY LIST":
+  ls
+
   #add, commit and push files
   git add -f .
   git commit -m "Travis build $TRAVIS_BUILD_NUMBER pushed to gh-pages"
