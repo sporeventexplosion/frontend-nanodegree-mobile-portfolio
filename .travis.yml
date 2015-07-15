@@ -1,0 +1,11 @@
+env:
+  global:
+    secure: WUFp4zayrBV+iNEJOTNafg2695Uto7LoTrPmJ9/t4kiRU05xwc7/w/5JUtgUxprzQx4gd+9iWbDlAialKshyKRkUx1QarpGEVLw/J8yFKrhTGUrrCZcrMgv5w5PZewiAAb75XRt7wHdwc2+Al8YenCxEtj+imuJjubvkhpJlgir1eTNyPvuurqM772lSSjxUcQTYRUnrsA7y2DW94eYzLDeCqaT/ARUknl0lKYuINL25rKi47tU7tBzOAAmzSrd2AunWAqARuDSJZcTKndL3CxASaMYn9chpxwL+YefXv6vfBaSjBv9Jaye+67Xm3jHHmwvWueWlAIIC3Ww7Uyk3Pdm9qMMETZmkGNRU33ItlSbDpSdoyPWL9WZr4vGRezp0xkBHTRs4wANUlSPfWSZhQy978QL0o2nZLFy9GcdVdgxC1AVXxMqkUIkKz+n5rafmzIp5h/BVc1YzNpkaKrFki7HOK7ldmVD5rII60OZN9nqUqO/k2INRvNhwJNgnJG8qN0j+SVz13lvDdoc8fM2Y8LAZwlcZ4xkSwnkhxtQgIupQaEtI9PR1t1TxiLC/Q8DietUgSzB1S/UKtirmx6TClUGo06XWD8FghF7oEaNJzyO1SQ2AFI0Z7cHu+7a629duWAc+tpNpuWrB9NiTE9sYt+w96Fc4tV7ZTxofpgODK4o=
+
+language: node_js
+
+node_js:
+  - "0.12"
+  - "0.10"
+
+script: ./update-gh-pages.sh
