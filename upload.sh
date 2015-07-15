@@ -19,9 +19,10 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   #go into diractory and copy data we're interested in to that directory
   cd gh-pages
 
-  rm -rf sporeventexplosion # remove useless dir
+
   cp -R $HOME/build/* .
   echo "Copied"
+  rm -rf sporeventexplosion # remove useless dir that's there for some reason due to the clone???
 
   echo "INCOMING DIRECTORY LIST":
   ls
