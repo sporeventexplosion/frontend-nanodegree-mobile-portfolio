@@ -15,6 +15,10 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   #using token clone gh-pages branch
   git clone --branch=gh-pages --depth 1 https://${GH_TOKEN}@github.com/sporeventexplosion/frontend-nanodegree-mobile-portfolio  gh-pages > /dev/null
 
+
+  echo "INCOMING DIRECTORY LIST":
+  ls
+  echo "COPIED"
   #go into diractory and copy data we're interested in to that directory
   cd gh-pages
   cp -R $HOME/build/* .
