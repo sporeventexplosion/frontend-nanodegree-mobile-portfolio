@@ -20,9 +20,17 @@
       // TODO: replace with your Google Analytics profile ID.
       ga('create', 'UA-XXXX-Y');
       ga('send', 'pageview');
+      // remove web font from CRP by using javascript insert after DCL
+      window.addEventListener("DOMContentLoaded", function() {
+        var link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = "//fonts.googleapis.com/css?family=Open+Sans:400,700";
+        var head = document.getElementsByTagName("head")[0];
+        head.insertBefore(link, head.children[0]);
+      });
     </script>
-    <script src="//www.google-analytics.com/analytics.js"></script>
-    <script src="js/perfmatters.js"></script>
+    <script async src="http://www.google-analytics.com/analytics.js"></script>
+    <script async src="js/perfmatters.js"></script>
   </head>
 
   <body>
