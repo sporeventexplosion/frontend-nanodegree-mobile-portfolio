@@ -441,7 +441,7 @@ var resizePizzas = function(size) {
 
   changeSliderLabel(size);
 
-  for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
+  for (var i = 0; i < randomPizzaContainers.length; i++) {
     randomPizzaContainers[i].style.width = newwidth + "px";
   }
 
