@@ -400,6 +400,7 @@ var pizzaElementGenerator = function(i) {
 
 var pizzaSizeIndicator = document.getElementById("pizzaSize");
 var randomPizzas = document.getElementById("randomPizzas");
+var randomPizzaContainers = document.getElementsByClassName("randomPizzaContainer");
 // resizePizzas(size) is called when the slider in the "Our Pizzas" section of the website moves.
 
 var getPizzaSize = function (size) {
@@ -435,36 +436,14 @@ var changeSliderLabel = function (size) {
 var resizePizzas = function(size) {
   window.performance.mark("mark_start_resize");   // User Timing API function
 
-  // Changes the value for the size of the pizza above the slider
-
+  // Calculate pizza width in one go, in a much less convoluted and more robust manner.
+  var newwidth = randomPizzas.offsetWidth * getPizzaSize(size);
 
   changeSliderLabel(size);
 
-  // Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
-  function determineDx (elem, size) {
-    var oldwidth = elem.offsetWidth;
-    var windowwidth = randomPizzas.offsetWidth;
-    var oldsize = oldwidth / windowwidth;
-
-    // TODO: change to 3 sizes? no more xl?
-    // Changes the slider value to a percent width
-
-    var newsize = getPizzaSize(size);
-    var dx = (newsize - oldsize) * windowwidth;
-
-    return dx;
+  for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
+    randomPizzaContainers[i].style.width = newwidth + "px";
   }
-
-  // Iterates through pizza elements on the page and changes their widths
-  function changePizzaSizes(size) {
-    for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
-      var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
-      var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
-      document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
-    }
-  }
-
-  changePizzaSizes(size);
 
   // User Timing API is awesome
   window.performance.mark("mark_end_resize");
