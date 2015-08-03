@@ -12,4 +12,13 @@ This site can be successfully run on any modern HTTP server and does not need to
 
 I also separated each moving background pizza into its own layer using CSS `will-change`, but I wrote it separately in this readme as it is not a JavaScript optimization.
 
+## `index.html` Optimizations
+
+* Scale down the pizza image to that of the other images and apply lossy compression within acceptable degrees.
+* Make Google Analytics script `async`
+* Add `media` attribute with value `print` to the print stylesheet.
+* Change child selectors to class selectors
+* Insert web fonts using some JavaScript by `requestAnimationFrame`, or on the `DOMContentLoaded` event if `requestAnimationFrame` is unavailable so to be non-blocking.
+* Minify the HTML and linked resources in the production directory.
+
 P.S. For the measurement of PageSpeed scores, the production folder `index.html` was used.
