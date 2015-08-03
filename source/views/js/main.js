@@ -516,20 +516,38 @@ document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
   var movingPizzaContainer = document.querySelector("#movingPizzas1");
-  var generatePizzas = function () {
-    var numberOfPizzas = Math.ceil(window.innerHeight / s) * cols; // Use ceil so a pizza will be generated even if it is clipped at the bottom
-    for (var i = 0; i < numberOfPizzas; i++) {
+  var numberOfPizzas = Math.ceil(window.innerHeight / s) * cols;
+  var generatePizzas = function (number, startY) {
+    startY = typeof startY === "undefined" ? 0 : startY;
+    // Use ceil so a pizza will be generated even if it is clipped at the bottom
+    for (var i = 0; i < number; i++) {
       var elem = document.createElement('img');
       elem.className = 'mover';
       elem.src = "images/pizza.png";
       elem.style.height = "100px";
       elem.style.width = "73.333px";
       elem.basicLeft = (i % cols) * s;
-      elem.style.top = (Math.floor(i / cols) * s) + 'px';
+      elem.style.top = (Math.floor(i / cols) * s) + startY + 'px';
       movingPizzaContainer.appendChild(elem);
     }
   };
 
-  generatePizzas();
+  generatePizzas(numberOfPizzas);
   updatePositions();
+
+  // Update number of pizzas if window is resized so there are always "just enough" pizzas
+  window.addEventListener("resize", function(){
+    var expectedNumberOfPizzas = Math.ceil(window.innerHeight / s) * cols;
+    if (expectedNumberOfPizzas > movingPizzaContainer.children.length) {
+      // Make more pizza movers. Second argument is so that it starts at the right place instead of top
+      generatePizzas(Math.ceil(window.innerHeight / s) * cols - movingPizzaContainer.children.length, movingPizzaContainer.children.length / cols * s);
+      updatePositions();
+    } else if (expectedNumberOfPizzas < movingPizzaContainer.children.length) {
+      // Remove unnecessary pizzas
+      var pizzasToRemove = movingPizzaContainer.children.length - expectedNumberOfPizzas;
+      for (var i = 0; i < pizzasToRemove; i++) {
+        movingPizzaContainer.children[movingPizzaContainer.children.length-1].remove();
+      }
+    }
+  });
 });

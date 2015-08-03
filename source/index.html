@@ -29,8 +29,8 @@
       }
       var raf = requestAnimationFrame || mozRequestAnimationFrame ||
           webkitRequestAnimationFrame || msRequestAnimationFrame;
-      if (raf) {raf(cb);}
-      else {window.addEventListener('load', cb);}
+      if (raf) {raf(loadFont);}
+      else {window.addEventListener('load', loadFont);}
 
     </script>
     <script async src="http://www.google-analytics.com/analytics.js"></script>
