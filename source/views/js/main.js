@@ -508,7 +508,8 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
   for (var i = 0; i < backgroundPizzas.length; i++) {
     var phase = Math.sin((scrollTop / 1250) + (i % 5));
-    backgroundPizzas[i].style.left = backgroundPizzas[i].basicLeft + 100 * phase + 'px';
+    // backgroundPizzas[i].style.left = backgroundPizzas[i].basicLeft + 100 * phase + 'px';
+    backgroundPizzas[i].style.transform = "translateX(" + (backgroundPizzas[i].basicLeft + 100 * phase) + 'px)';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -529,15 +530,20 @@ document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
   var movingPizzaContainer = document.querySelector("#movingPizzas1");
-  for (var i = 0; i < 200; i++) {
-    var elem = document.createElement('img');
-    elem.className = 'mover';
-    elem.src = "images/pizza.png";
-    elem.style.height = "100px";
-    elem.style.width = "73.333px";
-    elem.basicLeft = (i % cols) * s;
-    elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    movingPizzaContainer.appendChild(elem);
-  }
+  var generatePizzas = function () {
+    var numberOfPizzas = Math.ceil(window.innerHeight / s) * cols; // Use ceil so a pizza will be generated even if it is clipped at the bottom
+    for (var i = 0; i < numberOfPizzas; i++) {
+      var elem = document.createElement('img');
+      elem.className = 'mover';
+      elem.src = "images/pizza.png";
+      elem.style.height = "100px";
+      elem.style.width = "73.333px";
+      elem.basicLeft = (i % cols) * s;
+      elem.style.top = (Math.floor(i / cols) * s) + 'px';
+      movingPizzaContainer.appendChild(elem);
+    }
+  };
+
+  generatePizzas();
   updatePositions();
 });
