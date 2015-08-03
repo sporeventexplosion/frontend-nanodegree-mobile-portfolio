@@ -491,10 +491,17 @@ function updatePositions() {
   var scrollTop = document.body.scrollTop; // Fetch scrollTop at the beginning of each updatePositions to avoid FSL
   frame++;
   window.performance.mark("mark_start_frame");
+
+  // Generate phases array at the beginning of each updatePositions call
+
+  var phases = [];
+  for (var i = 0; i < 5; i++) {
+    phases.push(Math.sin((scrollTop / 1250) + i) * 100);
+  }
   for (var i = 0; i < backgroundPizzas.length; i++) {
-    var phase = Math.sin((scrollTop / 1250) + (i % 5));
+
     // backgroundPizzas[i].style.left = backgroundPizzas[i].basicLeft + 100 * phase + 'px';
-    backgroundPizzas[i].style.transform = "translateX(" + (backgroundPizzas[i].basicLeft + 100 * phase) + 'px)';
+    backgroundPizzas[i].style.transform = "translateX(" + (backgroundPizzas[i].basicLeft + phases[i%5]) + 'px)';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
